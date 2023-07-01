@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 
 class ContactForm extends Component {
   state = {
@@ -6,32 +7,54 @@ class ContactForm extends Component {
     number: '',
   };
 
+  inputNameId = nanoid();
+  inputNumberId = nanoid();
+
+  handleInputChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  handleSubmitForm = event => {
+    event.preventDefault();
+
+    this.props.addContact(this.state);
+
+    this.handleResetForm();
+  };
+
+  handleResetForm = () => {
+    this.setState({ name: '', number: '' });
+  };
+
   render() {
     return (
-      <form className="contact-form">
-        <label htmlFor="name" className="label">
+      <form className="contact-form" onSubmit={this.handleSubmitForm}>
+        <label htmlFor="name" className="label" id={this.inputNameId}>
           Name:
         </label>
         <input
+          id={this.inputNameId}
           type="text"
-          id="name"
           name="name"
           className="input"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          value={this.state.name}
+          onChange={this.handleInputChange}
           required
         />
 
-        <label htmlFor="phone" className="label">
+        <label htmlFor="phone" className="label" id={this.inputNumberId}>
           Phone Number:
         </label>
         <input
           type="tel"
-          id="phone"
-          name="phone"
+          id={this.inputNumberId}
+          name="number"
           className="input"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          value={this.state.number}
+          onChange={this.handleInputChange}
           required
         />
 

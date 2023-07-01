@@ -10,6 +10,8 @@ class Filter extends Component {
         name="filter"
         className="filter-input"
         placeholder="Search contacts..."
+        onChange={this.props.onChange}
+        value={this.props.value}
       />
     );
   }
