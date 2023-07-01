@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
+import css from './App.module.css';
+
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
+import { nanoid } from 'nanoid';
+
+const { section, contacts_container, contact_list_title } = css;
 
 export class App extends Component {
   state = {
     contacts: [
-      { name: 'Rosie Simpson', number: '459-12-56' },
-      { name: 'Hermione Kline', number: '443-89-12' },
-      { name: 'Eden Clements', number: '645-17-79' },
-      { name: 'Annie Copeland', number: '227-91-26' },
+      { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
+      { id: nanoid(), name: 'Hermione Kline', number: '443-89-12' },
+      { id: nanoid(), name: 'Eden Clements', number: '645-17-79' },
+      { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
   };
@@ -39,22 +44,26 @@ export class App extends Component {
   };
 
   render() {
+    const { contacts, filter } = this.state;
+
+    const normalizedContact = filter.toLowerCase();
+    const filteredContacts = contacts.filter(({ name }) =>
+      name.toLowerCase().includes(normalizedContact)
+    );
+
     return (
-      <section className="section">
+      <section className={section}>
         <ContactForm addContact={this.addContactToList} />
 
-        <div className="contacts-container">
-          <h3 className="contact-list-title">Contact List</h3>
-          {this.state.contacts.length === 0 ? (
-            <h3 className="contact-list-title">There are no contacts</h3>
+        <div className={contacts_container}>
+          <h3 className={contact_list_title}>Contact List</h3>
+          {contacts.length === 0 ? (
+            <h3 className={contact_list_title}>There are no contacts</h3>
           ) : (
             <>
-              <Filter
-                onChange={this.filterContacts}
-                value={this.state.filter}
-              />
+              <Filter onChange={this.filterContacts} value={filter} />
               <ContactList
-                contacts={this.state.contacts}
+                contacts={filteredContacts}
                 removeContact={this.removeContactFromList}
               />
             </>

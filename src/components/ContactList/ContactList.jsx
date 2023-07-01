@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import ContactListItem from './ContactListItem/ContactListItem';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+
+import ContactListItem from './ContactListItem/ContactListItem';
+
+import css from './ContactList.module.css';
+const { contact_list_container, contact_list } = css;
 
 class ContactList extends Component {
-  state = {};
-
   render() {
+    const { contacts, removeContact } = this.props;
+
     return (
-      <div className="contact-list-container">
-        <ul className="contact-list">
-          {this.props.contacts.map(({ name, number }, index) => {
+      <div className={contact_list_container}>
+        <ul className={contact_list}>
+          {contacts.map(({ name, number }, index) => {
             return (
               <ContactListItem
                 key={nanoid()}
                 name={name}
                 number={number}
-                removeContact={this.props.removeContact}
+                removeContact={removeContact}
                 index={index}
               />
             );
@@ -25,5 +30,15 @@ class ContactList extends Component {
     );
   }
 }
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  removeContact: PropTypes.func.isRequired,
+};
 
 export default ContactList;
