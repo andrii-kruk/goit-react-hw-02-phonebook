@@ -13,3 +13,145 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.section {
+  width: 1280px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 56px;
+  padding-bottom: 56px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+
+  /* outline: 1px solid tomato; */
+}
+
+.contact-form {
+  padding: 32px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #cccccc;
+  border-radius: 8px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.input[type='text'],
+.input[type='tel'] {
+  width: 228px;
+  margin-bottom: 10px;
+  padding: 6px;
+
+  border: 1px solid #b7b7b7;
+  border-radius: 4px;
+}
+
+.submit-button {
+  min-width: 95px;
+  padding: 10px;
+
+  background-color: #4caf50;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+.contacts-container {
+  width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  background-color: #cccccc;
+  border-radius: 8px;
+  padding: 32px;
+}
+.filter-container {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.filter-title {
+  margin: 0;
+  text-align: center;
+}
+
+.filter-input {
+  width: 228px;
+  padding: 6px;
+
+  border: 1px solid #b7b7b7;
+  border-radius: 4px;
+}
+
+.contact-list-container {
+  width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-list-title {
+  text-align: center;
+  margin: 0;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.contact-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 4px;
+}
+
+.contact-info {
+  margin: 0;
+}
+
+.remove-button {
+  min-width: 75px;
+  padding: 8px;
+  background-color: #4caf50;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #45a049;
+}
